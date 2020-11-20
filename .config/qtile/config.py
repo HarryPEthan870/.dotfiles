@@ -86,8 +86,8 @@ screens = [
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Volume(),
+                widget.libqtile.widget.DebugInfo()
                 widget.Systray(),
-                widget.Pacman(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
                 widget.QuickExit(),
             ],
