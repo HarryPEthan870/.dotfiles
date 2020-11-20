@@ -86,6 +86,7 @@ screens = [
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Volume(),
+                widget.Pacman(),
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
                 widget.QuickExit(),
