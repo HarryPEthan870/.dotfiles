@@ -3,8 +3,7 @@ from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.lazy import lazy
 from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
-import os
-import subprocess
+import subprocess, os
 mod = "mod4"
 
 keys = [
@@ -27,9 +26,10 @@ keys = [
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
+
     Key([mod], "Return", lazy.spawn("terminator")),
-    Key([mod], "d", lazy.spawn("dmenu_run")),
-    Key([mod], "F1", lazy.spawn("dolphin")),
+    Key([mod], "d", lazy.spawn("rofi -show drun")),
+    Key([mod], "F1", lazy.spawn("pcmanfm")),
     Key([], "XF86AudioMute", lazy.spawn("amixer -q -D pulse sset Master toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q -D pulse sset Master 5%- unmute")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q -D pulse sset Master 5%+ unmute")),
@@ -42,11 +42,12 @@ keys = [
     Key([mod], "r", lazy.spawncmd()),
 ]
 
-group_names = [("WEB", {'layout': 'max'}),
-               ("IDE", {'layout': 'max'}),
-               ("LUTRIS",{'layout': 'monadtall'}),
-               ("FILE", {'layout': 'tile'}),
-               ("CHAT", {'layout': 'stack'})]
+           
+group_names = [("ONE", {'layout': 'mondadtall'}),
+               ("TWO", {'layout': 'max'}),
+               ("THREE",{'layout': 'monadtall'}),
+               ("FOUR", {'layout': 'tile'}),
+               ("FIVE", {'layout': 'stack'})]
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
 for i, (name, kwargs) in enumerate(group_names, 1):
@@ -71,9 +72,10 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='sans',
-    fontsize=12,
-    padding=3,
+    font='times',
+    fontsize=16,
+    padding=1,
+    background='#939393',
 )
 extension_defaults = widget_defaults.copy()
 
@@ -82,11 +84,14 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.GroupBox(
+                    visible_groups=["ONE"],
+                    ),
                 widget.Prompt(),
                 widget.WindowName(),
+                widget.CPU(),
+                widget.CPUGraph(),
                 widget.Volume(),
-                widget.Pacman(),
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
                 widget.QuickExit(),
