@@ -17,7 +17,12 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'nathanaelkane/vim-indent-guides'
 ""https://github.com/preservim/nerdcommenter
 Plugin 'scrooloose/nerdcommenter'
+""https://github.com/jistr/vim-nerdtree-tabs
+Plugin 'jistr/vim-nerdtree-tabs'
+""https://github.com/flazz/vim-colorschemes
+Plugin 'flazz/vim-colorschemes'
 "end plugins
 call vundle#end()        
 filetype plugin indent on
 ""run git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+""in vim run {:PluginInstall}
